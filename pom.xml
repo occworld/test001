@@ -1,0 +1,309 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.liusq.test001</groupId>
+    <artifactId>test-001</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>liusq-test001</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- 默认被测服务器ip和port  -->
+        <ip>10.23.4.53</ip>
+        <!--<ip>10.24.145.130</ip>-->
+        <port>8080</port>
+        <testng.configxml>src/main/resources/testng.xml</testng.configxml>
+    </properties>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.meituan.ftpqa</groupId>
+                <artifactId>mt-ftpqa-bom</artifactId>
+                <version>1.0.3</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.sankuai</groupId>
+                <artifactId>inf-bom</artifactId>
+                <version>1.3.5.2</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+    <dependencies>
+        <!-- ftpqa-api-lib -->
+        <dependency>
+            <groupId>com.meituan.ftpqa</groupId>
+            <artifactId>ftpqa-api-lib</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.codehaus.groovy</groupId>
+                    <artifactId>groovy-al</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.dianping.zebra</groupId>
+                    <artifactId>zebra-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- creditpay client -->
+        <dependency>
+            <groupId>com.sankuai.meituan</groupId>
+            <artifactId>xy-trade-creditpay-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <!--thrift-->
+        <dependency>
+            <groupId>com.meituan.service.mobile</groupId>
+            <artifactId>mtthrift</artifactId>
+        </dependency>
+        <!--listening -->
+        <dependency>
+            <groupId>com.meituan.financegroup</groupId>
+            <artifactId>testngresultcollect</artifactId>
+        </dependency>
+        <!-- testing -->
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.11</version>
+        </dependency>
+        <!-- Spring -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+        </dependency>
+        <!--mybatis-->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.4.0</version>
+        </dependency>
+        <!-- mybatis/spring包 -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>1.3.0</version>
+        </dependency>
+        <!-- json -->
+        <!-- 统一用fastjson-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
+        <!-- http -->
+        <dependency>
+            <groupId>com.squareup.retrofit2</groupId>
+            <artifactId>retrofit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.retrofit2</groupId>
+            <artifactId>converter-gson</artifactId>
+        </dependency>
+        <!--lombok-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.10</version>
+        </dependency>
+        <!--iso8583-->
+        <dependency>
+            <groupId>com.liandi.iso8583</groupId>
+            <artifactId>iso8583</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
+        <!--postac-->
+        <dependency>
+            <groupId>com.sankuai.meituan</groupId>
+            <artifactId>postac-client</artifactId>
+            <version>1.1.5-SNAPSHOT</version>
+        </dependency>
+
+        <!--posfront-->
+        <!--<dependency>-->
+            <!--<groupId>com.meituan.pay</groupId>-->
+            <!--<artifactId>posfront-web</artifactId>-->
+            <!--<version>1.0-SNAPSHOT</version>-->
+        <!--</dependency>-->
+        <dependency>
+            <groupId>com.meituan.pay</groupId>
+            <artifactId>posfront-api</artifactId>
+            <version>1.0.4-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.meituan.pay</groupId>
+            <artifactId>posfront-common</artifactId>
+            <version>1.0.27-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.meituan.pay</groupId>
+            <artifactId>posfront-dao</artifactId>
+            <version>1.0.6-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.meituan.pay</groupId>
+            <artifactId>posfront-server</artifactId>
+            <version>1.0.6-SNAPSHOT</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.20</version>
+                <configuration>
+                    <forkMode>once</forkMode>
+                    <argLine>-Dfile.encoding=UTF-8</argLine>
+                    <testFailureIgnore>true</testFailureIgnore>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${testng.configxml}</suiteXmlFile>
+                    </suiteXmlFiles>
+                    <!-- 使allure-results在target文件夹下（很重要） -->
+                    <!--<workingDirectory>target/</workingDirectory>-->
+                </configuration>
+            </plugin>
+        </plugins>
+
+        <resources>
+            <resource>
+                <directory>
+                    ${basedir}/src/main/resources
+                </directory>
+                <filtering>true</filtering>
+            </resource>
+
+            <resource>
+                <directory>
+                    ${basedir}/src/main/profiles/${conf-dir}
+                </directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>config.properties</include>
+                </includes>
+            </resource>
+        </resources>
+
+    </build>
+
+    <profiles>
+        <profile>
+            <id>test</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <conf-dir>test</conf-dir>
+            </properties>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/profiles/test</directory>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <conf-dir>dev</conf-dir>
+            </properties>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/profiles/dev</directory>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+        <profile>
+            <id>beta</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <conf-dir>beta</conf-dir>
+            </properties>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/profiles/beta</directory>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+        <profile>
+            <id>stage</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <conf-dir>stage</conf-dir>
+            </properties>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/profiles/stag</directory>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <conf-dir>prod</conf-dir>
+            </properties>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/profiles/prod</directory>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+    </profiles>
+
+</project>
+
